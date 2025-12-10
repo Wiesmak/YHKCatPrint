@@ -15,3 +15,11 @@ class Printer(val message: String) {
         println(message)
     }
 }
+
+class NativeTest() {
+    init {
+        System.load("D:/IdeaProjects/YHKCatPrint/utils/libs/YHKCatPrint/x64/Release/YHKCatPrint.dll")
+    }
+
+    external fun printHelloFromNative()
+}
