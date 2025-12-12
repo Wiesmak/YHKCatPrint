@@ -25,6 +25,40 @@ Abstract:
 namespace yhkcatprint
 {
 	/**
+ * @brief Structure containing Bluetooth device information.
+ */
+	struct DeviceInfo
+	{
+		/**
+		 * @brief Bluetooth address of the device in format "XX:XX:XX:XX:XX:XX".
+		 */
+		std::string address;
+		/**
+		 * @brief Human-readable name of the device.
+		 */
+		std::string name;
+	};
+
+	/**
+	 * @brief Connection options for RFCOMM sockets.
+	 */
+	enum ConnectOptions
+	{
+		/**
+		 * @brief No timeout; block indefinitely.
+		 */
+		TIMEOUT_NONE = 0,
+		/**
+		 * @brief Default timeout duration.
+		 */
+		TIMEOUT_DEFAULT = 1,
+		/**
+		 * @brief Long timeout duration.
+		 */
+		TIMEOUT_LONG = 2
+	};
+
+	/**
 	 * @brief Abstract interface representing a remote Bluetooth device.
 	 * 
 	 * Implementations of this interface provide methods to retrieve device
@@ -56,40 +90,6 @@ namespace yhkcatprint
 		 * @throws std::runtime_error on failure to create the socket.
 		 */
 		virtual std::shared_ptr<IRfcommSocket> createRfcommSocket(uint8_t channel, ConnectOptions options) = 0;
-	};
-
-	/**
-	 * @brief Structure containing Bluetooth device information.
-	 */
-	struct DeviceInfo
-	{
-		/**
-		 * @brief Bluetooth address of the device in format "XX:XX:XX:XX:XX:XX".
-		 */
-		std::string address;
-		/**
-		 * @brief Human-readable name of the device.
-		 */
-		std::string name;
-	};
-
-	/**
-	 * @brief Connection options for RFCOMM sockets.
-	 */
-	enum ConnectOptions
-	{
-		/**
-		 * @brief No timeout; block indefinitely.
-		 */
-		TIMEOUT_NONE = 0,
-		/**
-		 * @brief Default timeout duration.
-		 */
-		TIMEOUT_DEFAULT = 1,
-		/**
-		 * @brief Long timeout duration.
-		 */
-		TIMEOUT_LONG = 2
 	};
 }
 

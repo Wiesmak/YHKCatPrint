@@ -3,5 +3,5 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
-  <Project Path="YHKCatPrint.vcxproj" />
+  <Project Path="YHKCatPrint.vcxproj" Id="6219bdcc-7dfb-4de5-bb76-4fddc610cfaf" />
 </Solution>
