@@ -152,13 +152,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="framework.h" />
+    <ClInclude Include="IDevice.h" />
     <ClInclude Include="IRfcommSocket.h" />
     <ClInclude Include="nativeprinter.h" />
+    <ClInclude Include="ProtoDevice.h" />
     <ClInclude Include="ProtoRfcommSocket.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="nativeprinter.cpp" />
+    <ClCompile Include="ProtoDevice.cpp" />
     <ClCompile Include="ProtoRfcommSocket.cpp" />
   </ItemGroup>
   <ItemGroup>

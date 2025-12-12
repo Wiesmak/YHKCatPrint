@@ -1,3 +1,15 @@
+/*++
+
+Copyright (C) 2025 Umamusume Polska
+
+Module Name:
+	ProtoRfcommSocket.cpp
+
+Abstract:
+	Implementation of ProtoRfcommSocket methods.
+
+--*/
+
 #include "ProtoRfcommSocket.h"
 #include <stdexcept>
 #include <vector>

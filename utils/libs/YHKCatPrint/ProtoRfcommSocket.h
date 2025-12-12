@@ -1,6 +1,6 @@
 /*++
 
-Copyright (C) 2024 Umamusume Polska
+Copyright (C) 2025 Umamusume Polska
 
 Module Name:
 	ProtoRfcommSocket.h

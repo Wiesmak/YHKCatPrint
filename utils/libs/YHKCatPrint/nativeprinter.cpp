@@ -1,10 +1,15 @@
 #include "nativeprinter.h"
 #include <iostream>
+#include <memory>
+#include "IDevice.h"
+#include "ProtoDevice.h"
 #include "IRfcommSocket.h"
 #include "ProtoRfcommSocket.h"
 
 using yhkcatprint::IRfcommSocket;
 using yhkcatprint::ProtoRfcommSocket;
+using yhkcatprint::IDevice;
+using yhkcatprint::ProtoDevice;
 
 JNIEXPORT void JNICALL Java_pl_umamusume_yhkcatprint_utils_NativePrinter_printBuffer(JNIEnv* env, jobject obj, jbyteArray buffer, jint length) {
 	uint8_t* data = reinterpret_cast<uint8_t*>(env->GetByteArrayElements(buffer, nullptr));
@@ -21,8 +26,9 @@ JNIEXPORT void JNICALL Java_pl_umamusume_yhkcatprint_utils_NativePrinter_printBu
 		return;
 	}
 
-	std::unique_ptr<IRfcommSocket> socket;
-	socket = std::make_unique<ProtoRfcommSocket>("24:00:28:00:1e:5b", 2);
+	auto device = std::make_unique<ProtoDevice>("24:00:28:00:1e:5b", "Cat Printer");
+	auto socket = device->createRfcommSocket(2, yhkcatprint::ConnectOptions::TIMEOUT_NONE);
+
 
 	try {
 		socket->connect();
