@@ -25,9 +25,9 @@ Abstract:
 namespace yhkcatprint
 {
 	/**
- * @brief Structure containing Bluetooth device information.
- */
-	struct DeviceInfo
+	 * @brief Structure containing Bluetooth device information.
+	 */
+	typedef struct _DEVICE_INFO
 	{
 		/**
 		 * @brief Bluetooth address of the device in format "XX:XX:XX:XX:XX:XX".
@@ -37,7 +37,7 @@ namespace yhkcatprint
 		 * @brief Human-readable name of the device.
 		 */
 		std::string name;
-	};
+	} DEVICE_INFO;
 
 	/**
 	 * @brief Connection options for RFCOMM sockets.
@@ -75,9 +75,9 @@ namespace yhkcatprint
 		/**
 		 * @brief Retrieves information about the Bluetooth device.
 		 * 
-		 * @return DeviceInfo structure containing the device's address and name.
+		 * @return DEVICE_INFO structure containing the device's address and name.
 		 */
-		virtual DeviceInfo getInfo() = 0;
+		virtual DEVICE_INFO getInfo() = 0;
 
 		/**
 		 * @brief Creates an RFCOMM socket connected to the specified channel.

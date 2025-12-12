@@ -49,7 +49,7 @@ namespace yhkcatprint
 		 */
 		virtual ~ProtoDevice() = default;
 
-		DeviceInfo getInfo() override;
+		DEVICE_INFO getInfo() override;
 
 		std::shared_ptr<IRfcommSocket> createRfcommSocket(uint8_t channel, ConnectOptions options) override;
 

@@ -13,6 +13,15 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Pliki nagłówkowe\Prototypes">
+      <UniqueIdentifier>{5ca6b516-2cc4-40c5-ae2c-8611da22993f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki źródłowe\Prototypes">
+      <UniqueIdentifier>{af546eaf-3cea-4162-abf7-68b152078250}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki nagłówkowe\Interfaces">
+      <UniqueIdentifier>{f3fe923d-18ae-4a6f-8a61-490c7d57d353}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -21,17 +30,23 @@
     <ClInclude Include="nativeprinter.h">
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
-    <ClInclude Include="IRfcommSocket.h">
-      <Filter>Pliki nagłówkowe</Filter>
+    <ClInclude Include="ProtoDevice.h">
+      <Filter>Pliki nagłówkowe\Prototypes</Filter>
     </ClInclude>
     <ClInclude Include="ProtoRfcommSocket.h">
-      <Filter>Pliki nagłówkowe</Filter>
+      <Filter>Pliki nagłówkowe\Prototypes</Filter>
+    </ClInclude>
+    <ClInclude Include="IAdapter.h">
+      <Filter>Pliki nagłówkowe\Interfaces</Filter>
     </ClInclude>
     <ClInclude Include="IDevice.h">
-      <Filter>Pliki nagłówkowe</Filter>
+      <Filter>Pliki nagłówkowe\Interfaces</Filter>
     </ClInclude>
-    <ClInclude Include="ProtoDevice.h">
-      <Filter>Pliki nagłówkowe</Filter>
+    <ClInclude Include="IRfcommSocket.h">
+      <Filter>Pliki nagłówkowe\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="ProtoAdapter.h">
+      <Filter>Pliki nagłówkowe\Prototypes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -41,11 +56,14 @@
     <ClCompile Include="nativeprinter.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
-    <ClCompile Include="ProtoRfcommSocket.cpp">
-      <Filter>Pliki źródłowe</Filter>
-    </ClCompile>
     <ClCompile Include="ProtoDevice.cpp">
-      <Filter>Pliki źródłowe</Filter>
+      <Filter>Pliki źródłowe\Prototypes</Filter>
+    </ClCompile>
+    <ClCompile Include="ProtoRfcommSocket.cpp">
+      <Filter>Pliki źródłowe\Prototypes</Filter>
+    </ClCompile>
+    <ClCompile Include="ProtoAdapter.cpp">
+      <Filter>Pliki źródłowe\Prototypes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

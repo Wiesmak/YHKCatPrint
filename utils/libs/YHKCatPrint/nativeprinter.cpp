@@ -1,6 +1,9 @@
 #include "nativeprinter.h"
 #include <iostream>
 #include <memory>
+#include <ranges>
+#include "IAdapter.h"
+#include "ProtoAdapter.h"
 #include "IDevice.h"
 #include "ProtoDevice.h"
 #include "IRfcommSocket.h"
@@ -10,6 +13,8 @@ using yhkcatprint::IRfcommSocket;
 using yhkcatprint::ProtoRfcommSocket;
 using yhkcatprint::IDevice;
 using yhkcatprint::ProtoDevice;
+using yhkcatprint::IAdapter;
+using yhkcatprint::ProtoAdapter;
 
 JNIEXPORT void JNICALL Java_pl_umamusume_yhkcatprint_utils_NativePrinter_printBuffer(JNIEnv* env, jobject obj, jbyteArray buffer, jint length) {
 	uint8_t* data = reinterpret_cast<uint8_t*>(env->GetByteArrayElements(buffer, nullptr));
@@ -26,12 +31,34 @@ JNIEXPORT void JNICALL Java_pl_umamusume_yhkcatprint_utils_NativePrinter_printBu
 		return;
 	}
 
-	auto device = std::make_unique<ProtoDevice>("24:00:28:00:1e:5b", "Cat Printer");
+	auto adapter = std::make_unique<ProtoAdapter>();
+
+	auto devices = adapter->getPairedDevices();
+
+	for (const auto& device : devices) {
+		std::cout << "Found paired device: " << device->getInfo().name << " [" << device->getInfo().address << "]" << std::endl;
+	}
+
+	auto device = devices.empty() ? nullptr : *(devices
+		| std::views::filter([](const std::shared_ptr<IDevice>& dev) {
+			return dev->getInfo().address == "24:00:28:00:1e:5b";}) 
+		| std::views::take(1) 
+	).begin();
+
+	if (device == nullptr) {
+		std::cerr << "Target device not found among paired devices." << std::endl;
+		env->ReleaseByteArrayElements(buffer, reinterpret_cast<jbyte*>(data), 0);
+		return;
+	}
+
+	std::cout << "Connecting to device: " << device->getInfo().name << " [" << device->getInfo().address << "]" << std::endl;
 	auto socket = device->createRfcommSocket(2, yhkcatprint::ConnectOptions::TIMEOUT_NONE);
+
+	//auto device = std::make_unique<ProtoDevice>("24:00:28:00:1e:5b", "Cat Printer");
+	//auto socket = device->createRfcommSocket(2, yhkcatprint::ConnectOptions::TIMEOUT_NONE);
 
 
 	try {
-		socket->connect();
 		const uint8_t initCmd[] = { 0x1b, 0x40 };
 		socket->send(initCmd, sizeof(initCmd));
 		// send \x1e\x47\x03 receive status 38 bytes
@@ -59,7 +86,6 @@ JNIEXPORT void JNICALL Java_pl_umamusume_yhkcatprint_utils_NativePrinter_printBu
 		// send end print sequence \x0a\x0a\x0a\x0a
 		const uint8_t endPrintCmd[] = { 0x0a, 0x0a, 0x0a, 0x0a };
 		socket->send(endPrintCmd, sizeof(endPrintCmd));
-		socket->close();
 	}
 	catch (const std::exception& ex) {
 		std::cerr << "Error: " << ex.what() << std::endl;

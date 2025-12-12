@@ -20,7 +20,7 @@ yhkcatprint::ProtoDevice::ProtoDevice(const std::string& address, const std::str
 {
 }
 
-yhkcatprint::DeviceInfo yhkcatprint::ProtoDevice::getInfo()
+yhkcatprint::DEVICE_INFO yhkcatprint::ProtoDevice::getInfo()
 {
 	return { deviceAddress, deviceName };
 }
