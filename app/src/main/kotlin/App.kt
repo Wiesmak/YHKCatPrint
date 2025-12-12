@@ -8,7 +8,7 @@ fun main() {
     val printer = NativePrinter(message)
     printer.print()
 
-    for (i in 1..5) {
-        println("i = $i")
-    }
+//    for (i in 1..5) {
+//        println("i = $i")
+//    }
 }

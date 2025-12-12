@@ -152,11 +152,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="framework.h" />
+    <ClInclude Include="IRfcommSocket.h" />
     <ClInclude Include="nativeprinter.h" />
+    <ClInclude Include="ProtoRfcommSocket.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="nativeprinter.cpp" />
+    <ClCompile Include="ProtoRfcommSocket.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />
