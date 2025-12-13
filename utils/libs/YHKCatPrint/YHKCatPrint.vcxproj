@@ -155,6 +155,7 @@
     <ClInclude Include="IAdapter.h" />
     <ClInclude Include="IBluetoothManager.h" />
     <ClInclude Include="IDevice.h" />
+    <ClInclude Include="IEventListener.h" />
     <ClInclude Include="IRfcommSocket.h" />
     <ClInclude Include="nativeprinter.h" />
     <ClInclude Include="ProtoAdapter.h" />
@@ -169,6 +170,14 @@
     <ClCompile Include="ProtoBluetoothManager.cpp" />
     <ClCompile Include="ProtoDevice.cpp" />
     <ClCompile Include="ProtoRfcommSocket.cpp" />
+    <ClCompile Include="win32_rfcomm.cpp" />
+    <ClCompile Include="yhkcatprint.adapter.ixx" />
+    <ClCompile Include="yhkcatprint.device.ixx" />
+    <ClCompile Include="yhkcatprint.ixx" />
+    <ClCompile Include="yhkcatprint.manager.ixx" />
+    <ClCompile Include="yhkcatprint.rfcomm.ixx" />
+    <ClCompile Include="yhkcatprint.win32.rfcomm.ixx" />
+    <ClCompile Include="yhkcatprint.win32.ixx" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />

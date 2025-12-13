@@ -22,6 +22,12 @@
     <Filter Include="Pliki nagłówkowe\Interfaces">
       <UniqueIdentifier>{f3fe923d-18ae-4a6f-8a61-490c7d57d353}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Pliki źródłowe\Interfaces">
+      <UniqueIdentifier>{65848519-3749-4f32-8107-02824e180d71}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki źródłowe\win32">
+      <UniqueIdentifier>{5ee59447-ade4-4dad-9174-fb69289500bb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -54,6 +60,9 @@
     <ClInclude Include="ProtoBluetoothManager.h">
       <Filter>Pliki nagłówkowe\Prototypes</Filter>
     </ClInclude>
+    <ClInclude Include="IEventListener.h">
+      <Filter>Pliki nagłówkowe\Interfaces</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -73,6 +82,30 @@
     </ClCompile>
     <ClCompile Include="ProtoBluetoothManager.cpp">
       <Filter>Pliki źródłowe\Prototypes</Filter>
+    </ClCompile>
+    <ClCompile Include="yhkcatprint.ixx">
+      <Filter>Pliki źródłowe</Filter>
+    </ClCompile>
+    <ClCompile Include="yhkcatprint.adapter.ixx">
+      <Filter>Pliki źródłowe\Interfaces</Filter>
+    </ClCompile>
+    <ClCompile Include="yhkcatprint.device.ixx">
+      <Filter>Pliki źródłowe\Interfaces</Filter>
+    </ClCompile>
+    <ClCompile Include="yhkcatprint.manager.ixx">
+      <Filter>Pliki źródłowe\Interfaces</Filter>
+    </ClCompile>
+    <ClCompile Include="yhkcatprint.rfcomm.ixx">
+      <Filter>Pliki źródłowe\Interfaces</Filter>
+    </ClCompile>
+    <ClCompile Include="yhkcatprint.win32.rfcomm.ixx">
+      <Filter>Pliki źródłowe\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="win32_rfcomm.cpp">
+      <Filter>Pliki źródłowe\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="yhkcatprint.win32.ixx">
+      <Filter>Pliki źródłowe\win32</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
