@@ -153,10 +153,12 @@
   <ItemGroup>
     <ClInclude Include="framework.h" />
     <ClInclude Include="IAdapter.h" />
+    <ClInclude Include="IBluetoothManager.h" />
     <ClInclude Include="IDevice.h" />
     <ClInclude Include="IRfcommSocket.h" />
     <ClInclude Include="nativeprinter.h" />
     <ClInclude Include="ProtoAdapter.h" />
+    <ClInclude Include="ProtoBluetoothManager.h" />
     <ClInclude Include="ProtoDevice.h" />
     <ClInclude Include="ProtoRfcommSocket.h" />
   </ItemGroup>
@@ -164,6 +166,7 @@
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="nativeprinter.cpp" />
     <ClCompile Include="ProtoAdapter.cpp" />
+    <ClCompile Include="ProtoBluetoothManager.cpp" />
     <ClCompile Include="ProtoDevice.cpp" />
     <ClCompile Include="ProtoRfcommSocket.cpp" />
   </ItemGroup>

@@ -2,6 +2,8 @@
 #include <iostream>
 #include <memory>
 #include <ranges>
+#include "IBluetoothManager.h"
+#include "ProtoBluetoothManager.h"
 #include "IAdapter.h"
 #include "ProtoAdapter.h"
 #include "IDevice.h"
@@ -31,7 +33,14 @@ JNIEXPORT void JNICALL Java_pl_umamusume_yhkcatprint_utils_NativePrinter_printBu
 		return;
 	}
 
-	auto adapter = std::make_unique<ProtoAdapter>();
+	auto manager = std::make_unique<yhkcatprint::ProtoBluetoothManager>();
+
+	for (auto adapter : manager->listAdapters())
+	{
+		std::cout << "Found adapter: " << adapter.name << " [" << adapter.address << "]" << std::endl;
+	}
+
+	auto adapter = std::make_unique<yhkcatprint::ProtoAdapter>();
 
 	auto devices = adapter->getPairedDevices();
 

@@ -45,6 +45,7 @@ std::shared_ptr<yhkcatprint::IRfcommSocket> yhkcatprint::ProtoDevice::createRfco
 		socket->connect(std::chrono::seconds(30));
 
 	case TIMEOUT_NONE:
+		[[fallthrough]];
 	default:
 		socket->connect();
 		break;

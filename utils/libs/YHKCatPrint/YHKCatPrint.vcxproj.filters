@@ -48,6 +48,12 @@
     <ClInclude Include="ProtoAdapter.h">
       <Filter>Pliki nagłówkowe\Prototypes</Filter>
     </ClInclude>
+    <ClInclude Include="IBluetoothManager.h">
+      <Filter>Pliki nagłówkowe\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="ProtoBluetoothManager.h">
+      <Filter>Pliki nagłówkowe\Prototypes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -63,6 +69,9 @@
       <Filter>Pliki źródłowe\Prototypes</Filter>
     </ClCompile>
     <ClCompile Include="ProtoAdapter.cpp">
+      <Filter>Pliki źródłowe\Prototypes</Filter>
+    </ClCompile>
+    <ClCompile Include="ProtoBluetoothManager.cpp">
       <Filter>Pliki źródłowe\Prototypes</Filter>
     </ClCompile>
   </ItemGroup>
