@@ -143,12 +143,16 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
+      <BrowseInformation>true</BrowseInformation>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
     </Link>
+    <Bscmake>
+      <PreserveSbr>true</PreserveSbr>
+    </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="framework.h" />
@@ -170,12 +174,16 @@
     <ClCompile Include="ProtoBluetoothManager.cpp" />
     <ClCompile Include="ProtoDevice.cpp" />
     <ClCompile Include="ProtoRfcommSocket.cpp" />
+    <ClCompile Include="win32_adapter.cpp" />
+    <ClCompile Include="win32_device.cpp" />
     <ClCompile Include="win32_rfcomm.cpp" />
     <ClCompile Include="yhkcatprint.adapter.ixx" />
     <ClCompile Include="yhkcatprint.device.ixx" />
     <ClCompile Include="yhkcatprint.ixx" />
     <ClCompile Include="yhkcatprint.manager.ixx" />
     <ClCompile Include="yhkcatprint.rfcomm.ixx" />
+    <ClCompile Include="yhkcatprint.win32.adapter.ixx" />
+    <ClCompile Include="yhkcatprint.win32.device.ixx" />
     <ClCompile Include="yhkcatprint.win32.rfcomm.ixx" />
     <ClCompile Include="yhkcatprint.win32.ixx" />
   </ItemGroup>

@@ -107,6 +107,18 @@
     <ClCompile Include="yhkcatprint.win32.ixx">
       <Filter>Pliki źródłowe\win32</Filter>
     </ClCompile>
+    <ClCompile Include="yhkcatprint.win32.device.ixx">
+      <Filter>Pliki źródłowe\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="win32_device.cpp">
+      <Filter>Pliki źródłowe\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="yhkcatprint.win32.adapter.ixx">
+      <Filter>Pliki źródłowe\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="win32_adapter.cpp">
+      <Filter>Pliki źródłowe\win32</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />
