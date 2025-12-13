@@ -47,7 +47,7 @@ namespace yhkcatprint
 				if (!std::getline(iss, byteStr, ':')) {
 					throw std::invalid_argument("Invalid Bluetooth address format");
 				}
-				uint8_t byte = static_cast<uint8_t>(std::stoul(byteStr, nullptr, 16));
+				std::uint8_t byte = static_cast<std::uint8_t>(std::stoul(byteStr, nullptr, 16));
 				btAddr |= (static_cast<BTH_ADDR>(byte) << (8 * (5 - i)));
 			}
 			return btAddr;
@@ -140,7 +140,7 @@ namespace yhkcatprint
 		return static_cast<size_t>(bytesReceived);
 	}
 
-	bool RfcommSocketWin32::available()
+	size_t RfcommSocketWin32::available()
 	{
 		if (!m_impl->connected) {
 			throw std::runtime_error("Socket not connected");

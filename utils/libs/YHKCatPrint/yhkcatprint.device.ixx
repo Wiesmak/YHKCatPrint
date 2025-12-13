@@ -50,11 +50,11 @@ export namespace yhkcatprint
 		 */
 		TIMEOUT_NONE = 0,
 		/**
-		 * @brief Default timeout duration.
+		 * @brief 5 seconds timeout duration.
 		 */
 		TIMEOUT_DEFAULT = 1,
 		/**
-		 * @brief Long timeout duration.
+		 * @brief 30 seconds timeout duration.
 		 */
 		TIMEOUT_LONG = 2
 	};
@@ -78,7 +78,7 @@ export namespace yhkcatprint
 		 *
 		 * @return DEVICE_INFO structure containing the device's address and name.
 		 */
-		virtual DEVICE_INFO getInfo() = 0;
+		virtual DEVICE_INFO getInfo() noexcept = 0;
 
 		/**
 		 * @brief Creates an RFCOMM socket connected to the specified channel.

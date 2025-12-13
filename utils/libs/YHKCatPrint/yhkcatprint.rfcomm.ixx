@@ -94,13 +94,13 @@ export namespace yhkcatprint
 		virtual size_t receive(std::uint8_t* buffer, size_t size) = 0;
 
 		/**
-		 * @brief Checks if data is available to read from the RFCOMM connection.
+		 * @brief Returns the number of bytes available to read without blocking.
 		 *
-		 * @return true if data is available to read, false otherwise.
+		 * @return Number of bytes available to read.
 		 *
 		 * @pre The socket is connected.
 		 */
-		virtual bool available() = 0;
+		virtual size_t available() = 0;
 
 		/**
 		 * @brief Closes the RFCOMM connection.

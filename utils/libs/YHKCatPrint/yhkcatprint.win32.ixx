@@ -13,3 +13,4 @@ Abstract:
 export module yhkcatprint.win32;
 
 export import :rfcomm;
+export import :device;

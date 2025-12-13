@@ -108,13 +108,13 @@ export namespace yhkcatprint
 		size_t receive(std::uint8_t* buffer, size_t size) override;
 
 		/**
-		 * @brief Checks if data is available to read from the RFCOMM connection.
+		 * @brief Returns the number of bytes available to read without blocking.
 		 * 
-		 * @return true if data is available to read, false otherwise.
+		 * @return Number of bytes available to read.
 		 * 
 		 * @pre The socket is connected.
 		 */
-		bool available() override;
+		size_t available() override;
 
 		/**
 		 * @brief Closes the RFCOMM socket.
