@@ -22,7 +22,7 @@ class RfcommSocket(
         this, NativeDeallocator(ptr, rfcommSocketGateway)
     )
 
-    private interface ConnectionCallback : Callback {
+    internal interface ConnectionCallback : Callback { //TODO: Fix tests and make it back private
         fun onSuccess()
         fun onError(error: Throwable)
     }
@@ -81,5 +81,9 @@ class RfcommSocket(
 
     override fun close() {
         cleanable.clean()
+    }
+
+    override fun toString(): String {
+        return "RfcommSocket(ptr=$ptr)"
     }
 }
