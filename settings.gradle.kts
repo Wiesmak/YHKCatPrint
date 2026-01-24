@@ -23,3 +23,5 @@ include(":app")
 include(":utils")
 
 rootProject.name = "YHKCatPrint"
+include("bluetooth")
+include("bluetooth")

@@ -1,3 +1,7 @@
+/**
+ * Copyright (c) 2026. Umamusume Polska
+ */
+
 package pl.umamusume.yhkcatprint.app
 
 import pl.umamusume.yhkcatprint.utils.NativePrinter
