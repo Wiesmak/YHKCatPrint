@@ -12,29 +12,13 @@ import javax.security.auth.callback.Callback
 import kotlin.coroutines.resumeWithException
 
 class RfcommSocket(
-    private val ptr: Long
+    private val ptr: Long,
+    gateway: BluetoothNativeGateway
 ) : AutoCloseable {
-    private val cleanable = NativeCleaner.register(this, NativeDeallocator(ptr))
-
-    companion object {
-        private external fun nativeConnect(ptr: Long, timeoutMs: Long, callback: Callback)
-
-        private external fun nativeCancelConnect(ptr: Long)
-
-        private external fun nativeStartReading(ptr: Long, callback: Callback)
-
-        private external fun nativeStopReading(ptr: Long)
-
-        private external fun nativeWrite(ptr: Long, data: ByteArray)
-
-        private external fun nativeClose(ptr: Long)
-    }
-
-    private class NativeDeallocator(private val ptr: Long) : Runnable {
-        override fun run() {
-            nativeClose(ptr)
-        }
-    }
+    private val rfcommSocketGateway = gateway.rfcommSocket
+    private val cleanable = NativeCleaner.register(
+        this, NativeDeallocator(ptr, rfcommSocketGateway)
+    )
 
     private interface ConnectionCallback : Callback {
         fun onSuccess()
@@ -53,10 +37,10 @@ class RfcommSocket(
                 }
             }
 
-            nativeConnect(ptr, timeoutMs, callback)
+            rfcommSocketGateway.connect(ptr, timeoutMs, callback)
 
             continuation.invokeOnCancellation {
-                nativeCancelConnect(ptr)
+                rfcommSocketGateway.cancelConnect(ptr)
             }
         }
     }
@@ -82,15 +66,15 @@ class RfcommSocket(
             }
         }
 
-        nativeStartReading(ptr, callback)
+        rfcommSocketGateway.startReading(ptr, callback)
 
         awaitClose {
-            nativeStopReading(ptr)
+            rfcommSocketGateway.close(ptr)
         }
     }
 
     suspend fun write(data: ByteArray) = withContext(Dispatchers.IO) {
-        nativeWrite(ptr, data)
+        rfcommSocketGateway.write(ptr, data)
     }
 
     override fun close() {

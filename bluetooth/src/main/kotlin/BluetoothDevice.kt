@@ -6,28 +6,20 @@ data class DeviceInfo(val address: String, val name: String)
 
 class BluetoothDevice internal constructor(
     private val ptr: Long,
-    val info: DeviceInfo
+    val info: DeviceInfo,
+    private val gateway: BluetoothNativeGateway
 ) : AutoCloseable {
     val address: String get() = info.address
     val name: String get() = info.name
 
-    private val cleanable = NativeCleaner.register(this, NativeDeallocator(ptr))
-
-    companion object {
-        private external fun nativeCreateSocket(ptr: Long, channel: Int): Long
-
-        private external fun nativeRelease(ptr: Long)
-    }
-
-    private class NativeDeallocator(private val ptr: Long) : Runnable {
-        override fun run() {
-            nativeRelease(ptr)
-        }
-    }
+    private val deviceGateway = gateway.bluetoothDevice
+    private val cleanable = NativeCleaner.register(
+        this, NativeDeallocator(ptr, deviceGateway)
+    )
 
     fun createSocket(channel: Int): RfcommSocket {
-        val socketPtr = nativeCreateSocket(ptr, channel)
-        return RfcommSocket(socketPtr)
+        val socketPtr = deviceGateway.createSocket(ptr, channel)
+        return RfcommSocket(socketPtr, gateway)
     }
 
     override fun close() {

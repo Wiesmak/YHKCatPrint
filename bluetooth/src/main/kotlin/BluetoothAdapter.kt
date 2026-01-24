@@ -9,39 +9,27 @@ data class AdapterInfo(val address: String, val name: String)
 
 class BluetoothAdapter internal constructor(
     private val ptr: Long,
-    val info: AdapterInfo
+    val info: AdapterInfo,
+    private val gateway: BluetoothNativeGateway
 ) : AutoCloseable {
     val address: String get() = info.address
     val name: String get() = info.name
 
-    private val cleanable = NativeCleaner.register(this, NativeDeallocator(ptr))
-
-    companion object {
-        private external fun nativeGetPaired(ptr: Long): LongArray
-
-        private external fun nativeGetDeviceAddress(ptr: Long): String
-
-        private external fun nativeGetDeviceName(ptr: Long): String
-
-        private external fun nativeRelease(ptr: Long)
-    }
-
-    private class NativeDeallocator(private val ptr: Long) : Runnable {
-        override fun run() {
-            nativeRelease(ptr)
-        }
-    }
+    private val adapterGateway = gateway.bluetoothAdapter
+    private val cleanable = NativeCleaner.register(
+        this,NativeDeallocator(ptr, adapterGateway)
+    )
 
     private suspend fun getDeviceByPtr(devicePtr: Long): BluetoothDevice = withContext(Dispatchers.IO) {
         val info = DeviceInfo(
-            address = nativeGetDeviceAddress(devicePtr),
-            name = nativeGetDeviceName(devicePtr)
+            address = adapterGateway.getDeviceAddress(devicePtr),
+            name = adapterGateway.getDeviceName(devicePtr)
         )
-        BluetoothDevice(devicePtr, info)
+        BluetoothDevice(devicePtr, info, gateway)
     }
 
     suspend fun getPairedDevices(): List<BluetoothDevice> = withContext(Dispatchers.IO) {
-        val pointers = nativeGetPaired(ptr)
+        val pointers = adapterGateway.getPaired(ptr)
         pointers.map { getDeviceByPtr(it) }
     }
 

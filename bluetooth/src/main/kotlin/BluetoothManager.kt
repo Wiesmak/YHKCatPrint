@@ -4,47 +4,31 @@
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import java.lang.ref.Cleaner
 
-class BluetoothManager : AutoCloseable {
-    private val ptr: Long = nativeInit()
-    private val cleanable = NativeCleaner.register(this, NativeDeallocator(ptr))
-
-    companion object {
-        private external fun nativeInit(): Long
-
-        private external fun nativeListAdapters(ptr: Long): LongArray
-
-        private external fun nativeGetAdapterAddress(ptr: Long): String
-
-        private external fun nativeGetAdapterName(ptr: Long): String
-
-        private external fun nativeGetAdapter(address: String): BluetoothAdapter
-
-        private external fun nativeRelease(ptr: Long)
-    }
-
-    private class NativeDeallocator(private val ptr: Long) : Runnable {
-        override fun run() {
-            nativeRelease(ptr)
-        }
-    }
+class BluetoothManager(
+    private val gateway: BluetoothNativeGateway,
+) : AutoCloseable {
+    private val managerGateway = gateway.bluetoothManager
+    private val ptr: Long = managerGateway.init()
+    private val cleanable = NativeCleaner.register(
+        this,NativeDeallocator(ptr, managerGateway)
+    )
 
     private suspend fun getAdapterByPtr(adapterPtr: Long): BluetoothAdapter = withContext(Dispatchers.IO) {
         val info = AdapterInfo(
-            address = nativeGetAdapterAddress(adapterPtr),
-            name = nativeGetAdapterName(adapterPtr)
+            address = managerGateway.getAdapterAddress(adapterPtr),
+            name = managerGateway.getAdapterName(adapterPtr)
         )
-        BluetoothAdapter(adapterPtr, info)
+        BluetoothAdapter(adapterPtr, info, gateway)
     }
 
     suspend fun listAdapters(): List<BluetoothAdapter> = withContext(Dispatchers.IO) {
-        val pointers = nativeListAdapters(ptr)
+        val pointers = managerGateway.listAdapters(ptr)
         pointers.map { getAdapterByPtr(it) }
     }
 
     fun getAdapter(address: String): Any {
-        return nativeGetAdapter(address)
+        return managerGateway.getAdapter(ptr, address)
     }
 
     override fun close() {
