@@ -8,14 +8,16 @@ import java.lang.ref.Cleaner
 
 class BluetoothManager : AutoCloseable {
     private val ptr: Long = nativeInit()
-    private val cleanable = cleaner.register(this, NativeDeallocator())
+    private val cleanable = NativeCleaner.register(this, NativeDeallocator(ptr))
 
     companion object {
-        private val cleaner = Cleaner.create()
-
         private external fun nativeInit(): Long
 
-        private external fun nativeListAdapters(ptr: Long): List<AdapterInfo>
+        private external fun nativeListAdapters(ptr: Long): LongArray
+
+        private external fun nativeGetAdapterAddress(ptr: Long): String
+
+        private external fun nativeGetAdapterName(ptr: Long): String
 
         private external fun nativeGetAdapter(address: String): BluetoothAdapter
 
@@ -28,8 +30,17 @@ class BluetoothManager : AutoCloseable {
         }
     }
 
-    suspend fun listAdapters(): List<Any> = withContext(Dispatchers.IO) {
-        nativeListAdapters(ptr)
+    private suspend fun getAdapterByPtr(adapterPtr: Long): BluetoothAdapter = withContext(Dispatchers.IO) {
+        val info = AdapterInfo(
+            address = nativeGetAdapterAddress(adapterPtr),
+            name = nativeGetAdapterName(adapterPtr)
+        )
+        BluetoothAdapter(adapterPtr, info)
+    }
+
+    suspend fun listAdapters(): List<BluetoothAdapter> = withContext(Dispatchers.IO) {
+        val pointers = nativeListAdapters(ptr)
+        pointers.map { getAdapterByPtr(it) }
     }
 
     fun getAdapter(address: String): Any {
