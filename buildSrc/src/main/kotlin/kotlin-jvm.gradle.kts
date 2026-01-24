@@ -7,11 +7,17 @@ import org.gradle.api.tasks.testing.logging.TestLogEvent
 plugins {
     // Apply the Kotlin JVM plugin to add support for Kotlin in JVM projects.
     kotlin("jvm")
+    // Apply Jacoco plugin for code coverage.
+    jacoco
 }
 
 kotlin {
     // Use a specific Java version to make it easier to work in different environments.
     jvmToolchain(21)
+}
+
+jacoco {
+    toolVersion = "0.8.14"
 }
 
 tasks.withType<Test>().configureEach {
@@ -25,5 +31,14 @@ tasks.withType<Test>().configureEach {
             TestLogEvent.PASSED,
             TestLogEvent.SKIPPED
         )
+    }
+}
+
+tasks.withType<JacocoReport>().configureEach {
+    dependsOn(tasks.withType<Test>())
+
+    reports {
+        xml.required.set(true)
+        html.required.set(true)
     }
 }
