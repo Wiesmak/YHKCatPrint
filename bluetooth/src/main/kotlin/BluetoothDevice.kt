@@ -2,6 +2,8 @@
  * Copyright (c) 2026. Umamusume Polska
  */
 
+package pl.umamusume.yhkcatprint.bluetooth
+
 data class DeviceInfo(val address: String, val name: String)
 
 class BluetoothDevice internal constructor(

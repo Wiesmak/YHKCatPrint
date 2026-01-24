@@ -1,8 +1,10 @@
-import javax.security.auth.callback.Callback
-
 /*
  * Copyright (c) 2026. Umamusume Polska
  */
+
+package pl.umamusume.yhkcatprint.bluetooth
+
+import javax.security.auth.callback.Callback
 
 object Win32NativeGateway : BluetoothNativeGateway {
     init {

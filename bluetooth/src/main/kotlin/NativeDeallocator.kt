@@ -1,8 +1,10 @@
-import kotlinx.coroutines.Runnable
-
 /*
  * Copyright (c) 2026. Umamusume Polska
  */
+
+package pl.umamusume.yhkcatprint.bluetooth
+
+import kotlinx.coroutines.Runnable
 
 class NativeDeallocator(
     private val ptr: Long,

@@ -2,6 +2,8 @@
  * Copyright (c) 2026. Umamusume Polska
  */
 
+package pl.umamusume.yhkcatprint.bluetooth
+
 import java.lang.ref.Cleaner
 
 object NativeCleaner {
