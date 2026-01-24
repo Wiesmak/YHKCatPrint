@@ -14,11 +14,9 @@ import kotlin.coroutines.resumeWithException
 class RfcommSocket(
     private val ptr: Long
 ) : AutoCloseable {
-    private val cleanable = cleaner.register(this, NativeDeallocator(ptr))
+    private val cleanable = NativeCleaner.register(this, NativeDeallocator(ptr))
 
     companion object {
-        private val cleaner = java.lang.ref.Cleaner.create()
-
         private external fun nativeConnect(ptr: Long, timeoutMs: Long, callback: Callback)
 
         private external fun nativeCancelConnect(ptr: Long)

@@ -11,11 +11,9 @@ class BluetoothDevice internal constructor(
     val address: String get() = info.address
     val name: String get() = info.name
 
-    private val cleanable = cleaner.register(this, NativeDeallocator(ptr))
+    private val cleanable = NativeCleaner.register(this, NativeDeallocator(ptr))
 
     companion object {
-        private val cleaner = java.lang.ref.Cleaner.create()
-
         private external fun nativeCreateSocket(ptr: Long, channel: Int): Long
 
         private external fun nativeRelease(ptr: Long)
