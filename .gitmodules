@@ -1,0 +1,3 @@
+[submodule "bluetooth/libs/YHKCatPrintNative"]
+	path = bluetooth/libs/YHKCatPrintNative
+	url = https://github.com/Wiesmak/YHKCatPrintNative.git
