@@ -3,16 +3,26 @@
  */
 
 plugins {
-    id("buildsrc.convention.kotlin-jvm")
     base
     `jacoco-report-aggregation`
 }
 
 dependencies {
-    implementation(project(":app"))
-    implementation(project(":bluetooth"))
+    jacocoAggregation(project(":app"))
+    jacocoAggregation(project(":bluetooth"))
 }
 
-tasks.check {
-    dependsOn(tasks.named<JacocoReport>("testCodeCoverageReport"))
+reporting {
+    reports {
+        val testCodeCoverageReport by creating(JacocoCoverageReport::class) {
+            testSuiteName = "Unit Test"
+        }
+    }
+}
+
+tasks.named<JacocoReport>("testCodeCoverageReport") {
+    reports {
+        xml.required.set(true)
+        html.required.set(true)
+    }
 }
