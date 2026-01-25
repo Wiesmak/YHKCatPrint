@@ -1,3 +1,3 @@
-fixes:
-  - "pl/umamusume/yhkcatprint/bluetooth/::bluetooth/src/main/kotlin/pl/umamusume/yhkcatprint/bluetooth/"
-  - "pl/umamusume/yhkcatprint/app/::app/src/main/kotlin/pl/umamusume/yhkcatprint/app/"
+paths:
+  - app/src/main/kotlin
+  - bluetooth/src/main/kotlin

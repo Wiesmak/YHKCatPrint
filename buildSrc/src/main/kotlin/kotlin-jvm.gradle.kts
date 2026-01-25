@@ -43,4 +43,11 @@ tasks.withType<JacocoReport>().configureEach {
         xml.required.set(true)
         html.required.set(true)
     }
+
+    sourceDirectories.setFrom(
+        files(
+            "app/src/main/kotlin",
+            "bluetooth/src/main/kotlin"
+        )
+    )
 }
