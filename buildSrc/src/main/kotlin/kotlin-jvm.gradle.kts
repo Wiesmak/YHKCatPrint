@@ -32,6 +32,8 @@ tasks.withType<Test>().configureEach {
             TestLogEvent.SKIPPED
         )
     }
+
+    finalizedBy(tasks.withType<JacocoReport>())
 }
 
 tasks.withType<JacocoReport>().configureEach {
