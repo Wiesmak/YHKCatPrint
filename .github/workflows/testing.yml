@@ -31,5 +31,6 @@ jobs:
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           slug: Wiesmak/YHKCatPrint
+          codecov_yml_path: ./codecov.yml
           files: ./build/reports/jacoco/testCodeCoverageReport/testCodeCoverageReport.xml
           fail_ci_if_error: true
