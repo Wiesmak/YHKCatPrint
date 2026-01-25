@@ -1,6 +1,7 @@
 # YHKCatPrint
 
 [![codecov](https://codecov.io/gh/Wiesmak/YHKCatPrint/graph/badge.svg?token=WPAM2EFYR5)](https://codecov.io/gh/Wiesmak/YHKCatPrint)
+[![testing](https://github.com/Wiesmak/YHKCatPrint/actions/workflows/testing.yml/badge.svg)](https://github.com/Wiesmak/YHKCatPrint/actions/workflows/testing.yml)
 
 This project uses [Gradle](https://gradle.org/).
 To build and run the application, use the *Gradle* tool window by clicking the Gradle icon in the right-hand toolbar,
