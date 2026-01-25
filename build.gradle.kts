@@ -15,7 +15,7 @@ dependencies {
 reporting {
     reports {
         val testCodeCoverageReport by creating(JacocoCoverageReport::class) {
-            testSuiteName = "Unit Test"
+            testSuiteName = "test"
         }
     }
 }
