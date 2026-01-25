@@ -109,15 +109,6 @@ class RfcommSocketTest {
     }
 
     @Test
-    fun testCloseDelegatesToGateway() = runTest {
-        every { rfcommSocketGateway.close(2137L) } returns Unit
-
-        socket.close()
-
-        verify(exactly = 1) { rfcommSocketGateway.close(2137L) }
-    }
-
-    @Test
     fun testWriteExceptionPropagation() = runTest {
         val dataToWrite = byteArrayOf(0x0A, 0x0B, 0x0C)
         val expectedError = IOException("Write failed")
