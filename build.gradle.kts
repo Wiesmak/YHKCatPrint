@@ -26,3 +26,7 @@ tasks.named<JacocoReport>("testCodeCoverageReport") {
         html.required.set(true)
     }
 }
+
+tasks.named("check") {
+    dependsOn("testCodeCoverageReport")
+}
