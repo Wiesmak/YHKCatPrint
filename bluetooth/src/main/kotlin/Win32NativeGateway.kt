@@ -9,7 +9,7 @@ import javax.security.auth.callback.Callback
 object Win32NativeGateway : BluetoothNativeGateway {
     init {
         // TODO: Change the path to a relative one
-        System.load("D:/IdeaProjects/YHKCatPrint/utils/libs/YHKCatPrint/x64/Release/YHKCatPrint.dll")
+        System.load("D:/IdeaProjects/YHKCatPrint/bluetooth/libs/YHKCatPrintNative/x64/Release/YHKCatPrint.dll")
     }
 
     override val bluetoothManager: BluetoothNativeGateway.BluetoothManagerGateway get() = BluetoothManager
