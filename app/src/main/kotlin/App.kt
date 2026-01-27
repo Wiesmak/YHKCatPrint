@@ -40,6 +40,8 @@ suspend fun main() {
         socket.close()
         println("Socket closed")
     }
+
+    bluetoothManager.close()
 }
 
 internal val exampleImage: IntArray = intArrayOf(
