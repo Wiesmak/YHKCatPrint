@@ -17,3 +17,20 @@ application {
     // (Note that Kotlin compiles `App.kt` to a class with FQN `com.example.app.AppKt`.)
     mainClass = "pl.umamusume.yhkcatprint.app.AppKt"
 }
+
+tasks.withType<Jar> {
+    manifest {
+        attributes["Main-Class"] = application.mainClass
+    }
+
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    from(sourceSets.main.get().output)
+
+    dependsOn(configurations.runtimeClasspath)
+    from({
+        configurations.runtimeClasspath.get().filter {
+            it.name.endsWith("jar")
+        }.map { zipTree(it) }
+    })
+}
